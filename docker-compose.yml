@@ -20,6 +20,7 @@ services:
       - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
       - PHP_ENABLE_XDEBUG
       - TEST_RUNTIME_PATH=/tmp/runtime
+      - PHP_IDE_CONFIG=serverName=Docker
     volumes:
       - ./tests:/tests:delegated
       # Framework testing
@@ -39,3 +40,16 @@ services:
     build:
       target: dev
     image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.21
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "${MYSQL_FORWARD_PORT:-33067}:3306"
+    environment:
+      - MYSQL_DATABASE=books_db
+      - MYSQL_USER=book_user
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=root

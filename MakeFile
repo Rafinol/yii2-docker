@@ -1,0 +1,13 @@
+start:
+	docker compose up -d
+change-permissions:
+	sudo -S chown radik:www-data -R _host-volumes/app/migrations
+	sudo -S chown radik:www-data -R _host-volumes/app/controllers
+	sudo -S chown radik:www-data -R _host-volumes/app/views
+	sudo -S chown radik:www-data -R _host-volumes/app/models
+	sudo -S chown radik:www-data -R _host-volumes/app/mail
+	sudo -S chown radik:www-data -R _host-volumes/app/config
+	sudo -S chown radik:www-data -R _host-volumes/app/commands
+	sudo -S chown radik:www-data -R _host-volumes/app/tests
+	sudo -S chown radik:www-data -R _host-volumes/app/README.md
+	sudo -S chown radik:www-data -R _host-volumes/app/composer.json
